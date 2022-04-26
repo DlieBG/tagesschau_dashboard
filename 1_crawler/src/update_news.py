@@ -38,10 +38,10 @@ class UpdateNews():
                         elif news['news']['crawler']['frontpageIndex'] > frontpage_index:
                             frontpage_status = 'up'
                     else:
-                        if news['news']['crawler']['frontpageIndex'] == -1:
-                            frontpage_status = 'stay out'
-                        else:
+                        if news['news']['crawler']['frontpageIndex'] != -1:
                             frontpage_status = 'out'
+                        else:
+                            frontpage_status = 'stay out'
 
                     if all_index != -1:
                         if news['news']['crawler']['allIndex'] == -1:
@@ -53,10 +53,10 @@ class UpdateNews():
                         elif news['news']['crawler']['allIndex'] > all_index:
                             all_status = 'up'
                     else:
-                        if news['news']['crawler']['allIndex'] == -1:
-                            all_status = 'stay out'
-                        else:
+                        if news['news']['crawler']['allIndex'] != -1:
                             all_status = 'out'
+                        else:
+                            all_status = 'stay out'
                     
                     if update:
                         new_news = requests.get(news['news']['details']).json()

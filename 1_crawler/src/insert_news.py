@@ -10,10 +10,8 @@ class InsertNews():
  
         while True:
             self.news_output_bucket = []
-            
             self.__crawl_articles()
             self.db.insert_news(self.news_output_bucket)
-            
             sleep(10 * 60)
 
     def __crawl_articles(self) -> None:
