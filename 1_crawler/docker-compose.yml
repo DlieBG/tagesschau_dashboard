@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  tagesschau_crawler:
+    build: .
+    restart: unless-stopped
+    env_file: .env   
+    tty: true
+    depends_on:
+      - mongo
