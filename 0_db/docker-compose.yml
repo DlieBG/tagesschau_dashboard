@@ -26,6 +26,7 @@ services:
     image: dpage/pgadmin4
     restart: unless-stopped
     environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@benedikt-schwering.de
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
        - pgadmin:/var/lib/pgadmin
