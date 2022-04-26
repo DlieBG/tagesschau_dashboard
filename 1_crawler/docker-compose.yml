@@ -6,5 +6,3 @@ services:
     restart: unless-stopped
     env_file: .env   
     tty: true
-    depends_on:
-      - mongo
