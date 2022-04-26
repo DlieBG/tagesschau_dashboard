@@ -11,7 +11,7 @@ class UpdateNews():
  
         while True:
             self.__update_news(datetime.now() - timedelta(days=1))
-            sleep(5 * 60)
+            sleep(10 * 60)
 
     def __update_news(self, timestamp: datetime) -> None:
         frontpage_news = requests.get('https://www.tagesschau.de/api2').json()['news']
@@ -26,8 +26,8 @@ class UpdateNews():
 
                 update = requests.get(news['news']['updateCheckUrl']).json()
 
-                if update == True or frontpage_index != news['news']['crawler']['frontpageIndex'] or all_index != news['news']['crawler']['allIndex']:
-                    print(update, '   ', news['news']['crawler']['frontpageIndex'], frontpage_index, '   ', news['news']['crawler']['allIndex'], all_index)
+                if update == True or frontpage_index != news['news']['crawler']['frontpageIndex']: # or all_index != news['news']['crawler']['allIndex']:
+
                     if frontpage_index != -1:
                         if news['news']['crawler']['frontpageIndex'] == -1:
                             news['news']['crawler']['frontpageStatus'] = 'in'
@@ -76,6 +76,7 @@ class UpdateNews():
 
                     print('Updated article: ', news['news']['sophoraId'])
                     self.db.update_news(new_news)
+
             except:
                 news['news']['crawler'] = {
                     'insertTime': news['news']['crawler']['insertTime'],

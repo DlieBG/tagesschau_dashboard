@@ -14,7 +14,7 @@ class InsertNews():
             self.__crawl_articles()
             self.db.insert_news(self.news_output_bucket)
             
-            sleep(5 * 60)
+            sleep(10 * 60)
 
     def __crawl_articles(self) -> None:
         frontpage_news = requests.get('https://www.tagesschau.de/api2').json()['news']
