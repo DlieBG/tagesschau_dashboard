@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - /data/mongo:/data/db
+    ports:
+      - 27017:27017
+
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tagesschau
+      POSTGRES_PASSWORD: geheim
+      PGPORT: 5434
+      PGDATA: /data/postgres
+    volumes:
+       - ./data/postgres:/data/postgres
+    ports:
+      - 5434:5434
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - 6069:80
+    depends_on:
+      - postgres
+
+volumes:
+    pgadmin:
