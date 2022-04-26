@@ -15,12 +15,12 @@ services:
     environment:
       POSTGRES_USER: tagesschau
       POSTGRES_PASSWORD: geheim
-      PGPORT: 5434
+      PGPORT: 5432
       PGDATA: /data/postgres
     volumes:
        - ./data/postgres:/data/postgres
     ports:
-      - 5434:5434
+      - 5432:5432
   
   pgadmin:
     image: dpage/pgadmin4
