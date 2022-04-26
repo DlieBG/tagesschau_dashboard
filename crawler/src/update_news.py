@@ -10,14 +10,22 @@ class UpdateNews():
         self.db = TagesschauMongoDB()
  
         while True:
-            self.__update_news(datetime.now() - timedelta(days=1))
-            sleep(10 * 60)
+            try:
+                self.__update_news(datetime.now() - timedelta(days=1))
+                sleep(10 * 60)
+            except Exception as e:
+                print(e)
+                sleep(10 * 60)
 
     def __update_news(self, timestamp: datetime) -> None:
         frontpage_news = requests.get('https://www.tagesschau.de/api2').json()['news']
 
-        all_news_raw = requests.get('https://www.tagesschau.de/api2/news').json()
-        all_news = all_news_raw['news'] + requests.get(all_news_raw['nextPage']).json()['news']
+        all_news_site = requests.get('https://www.tagesschau.de/api2/news').json()
+        all_news = all_news_site['news']
+        
+        while next_url := all_news_site.get('nextPage'):
+            all_news_site = requests.get(next_url).json()
+            all_news += all_news_site['news']
 
         for news in self.db.get_news_to_update(timestamp):
             try:

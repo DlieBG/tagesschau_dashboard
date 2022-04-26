@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  tagesschau_crawler:
+    build: ./crawler
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/tagesschau
+    tty: true
+
+  mongo:
+    image: mongo:5.0.7
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db
+
+  postgres:
+    image: postgres:14.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tagesschau
+      POSTGRES_PASSWORD: admin
+      PGPORT: 5432
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/init/:/docker-entrypoint-initdb.d/
+      - ./data/postgres:/data/postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:6.8
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    user: root
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@local.de
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 6069:80
+    volumes:
+       - ./data/pgadmin:/var/lib/pgadmin

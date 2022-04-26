@@ -9,20 +9,28 @@ class InsertNews():
         self.db = TagesschauMongoDB()
  
         while True:
-            self.news_output_bucket = []
-            
-            self.__crawl_articles()
-            self.db.insert_news(self.news_output_bucket)
-            
-            sleep(10 * 60)
+            try:
+                self.news_output_bucket = []
+                
+                self.__crawl_articles()
+                self.db.insert_news(self.news_output_bucket)
+                
+                sleep(10 * 60)
+            except Exception as e:
+                print(e)
+                sleep(10 * 60)
 
     def __crawl_articles(self) -> None:
         frontpage_news = requests.get('https://www.tagesschau.de/api2').json()['news']
-
-        all_news_raw = requests.get('https://www.tagesschau.de/api2/news').json()
-        all_news = all_news_raw['news'] + requests.get(all_news_raw['nextPage']).json()['news']
-
         self.__insert_frontpage_news(frontpage_news)
+
+        all_news_site = requests.get('https://www.tagesschau.de/api2/news').json()
+        all_news = all_news_site['news']
+        
+        while next_url := all_news_site.get('nextPage'):
+            all_news_site = requests.get(next_url).json()
+            all_news += all_news_site['news']
+        
         self.__insert_all_news(all_news)
 
     def __insert_frontpage_news(self, frontepage_news: list) -> None:
@@ -75,7 +83,8 @@ class InsertNews():
 
                     print('Inserted article: ', news['sophoraId'])
                     self.news_output_bucket.append(news)
-
-                elif existing_news_bucket:
+                    continue
+                
+                if existing_news_bucket:
                     existing_news_bucket['crawler']['allIndex'] = index
                     existing_news_bucket['crawler']['allStatus'] = 'in'
