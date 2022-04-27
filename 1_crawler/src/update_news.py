@@ -21,8 +21,8 @@ class UpdateNews():
 
         for news in self.db.get_news_to_update(timestamp):
             try:
-                frontpage_index = self.__find_index(frontpage_news, news['news']['sophoraId'])
-                all_index = self.__find_index(all_news, news['news']['sophoraId'])
+                frontpage_index = self.__find_index(frontpage_news, news['news']['externalId'])
+                all_index = self.__find_index(all_news, news['news']['externalId'])
 
                 update = requests.get(news['news']['updateCheckUrl']).json()
 
@@ -74,7 +74,7 @@ class UpdateNews():
                         'allStatus': all_status
                     }
 
-                    print('Updated article: ', news['news']['sophoraId'])
+                    print('Updated article: ', news['news']['externalId'])
                     self.db.update_news(new_news)
 
             except:
@@ -88,12 +88,12 @@ class UpdateNews():
                     'allStatus': 'stay out' if news['news']['crawler']['allStatus'] == 'stay out' or news['news']['crawler']['allStatus'] == 'out' else 'out'
                 }
 
-                print('Deleted article: ', news['news']['sophoraId'])
+                print('Deleted article: ', news['news']['externalId'])
                 self.db.update_news(news['news'])
 
-    def __find_index(self, news: list, sophoraId: str) -> int:
+    def __find_index(self, news: list, externalId: str) -> int:
         for index, article in enumerate(news):
-            if article.get('sophoraId', None) == sophoraId:
+            if article.get('externalId', None) == externalId:
                 return index
 
         return -1
