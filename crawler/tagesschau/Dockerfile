@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/main.py .
 COPY src/mongo.py .
-COPY src/postgres.py .
+COPY src/insert_news.py .
+COPY src/update_news.py .
 
 CMD [ "python", "main.py" ]
