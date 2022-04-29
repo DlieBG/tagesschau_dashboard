@@ -24,7 +24,7 @@ class TagesschauMongoDB:
         
         self.db.news.insert_one(news)
 
-    def get_news(self, sophoraId: str) -> object:
+    def get_news(self, externalId: str) -> object:
         try:
             return self.db.news.aggregate([
                 {
@@ -34,12 +34,12 @@ class TagesschauMongoDB:
                 },
                 { 
                     '$match': { 
-                        'sophoraId': sophoraId
+                        'externalId': externalId
                     } 
                 },
                 {
                     '$group': {
-                        '_id': '$sophoraId', 
+                        '_id': '$externalId', 
                         'news': {
                             '$last': '$$ROOT'
                         }
@@ -65,7 +65,7 @@ class TagesschauMongoDB:
             },
             {
                 '$group': {
-                    '_id': '$sophoraId', 
+                    '_id': '$externalId', 
                     'news': {
                         '$last': '$$ROOT'
                     }

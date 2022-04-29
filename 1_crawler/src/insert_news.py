@@ -26,9 +26,9 @@ class InsertNews():
     def __insert_frontpage_news(self, frontepage_news: list) -> None:
         for index, news in enumerate(frontepage_news):
             
-            if news.get('sophoraId', None):
+            if news.get('externalId', None):
                 
-                existing_news = self.db.get_news(news['sophoraId'])
+                existing_news = self.db.get_news(news['externalId'])
 
                 if not existing_news:
                     news['crawler'] = {
@@ -46,12 +46,12 @@ class InsertNews():
     def __insert_all_news(self, all_news: list) -> None:
         for index, news in enumerate(all_news):
             
-            if news.get('sophoraId', None):
+            if news.get('externalId', None):
                 
-                existing_news_db = self.db.get_news(news['sophoraId'])
+                existing_news_db = self.db.get_news(news['externalId'])
                 
                 try:
-                    existing_news_bucket = [x for x in self.news_output_bucket if x['sophoraId'] == news['sophoraId']][0]
+                    existing_news_bucket = [x for x in self.news_output_bucket if x['externalId'] == news['externalId']][0]
                 except:
                     existing_news_bucket = None
 
@@ -71,7 +71,7 @@ class InsertNews():
                         'allStatus': 'in'
                     }
 
-                    print('Inserted article: ', news['sophoraId'])
+                    print('Inserted article: ', news['externalId'])
                     self.news_output_bucket.append(news)
 
                 elif existing_news_bucket:
