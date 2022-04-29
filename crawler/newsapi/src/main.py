@@ -9,7 +9,9 @@ load_dotenv(find_dotenv())
 
 db = NewsApiMongoDB()
 if not db.get_sources():
-    sources = json.loads("sources.json")
+    f = open("sources.json")
+    sources = json.loads(f.read())
+    f.close()
     db.insert_sources(sources)
 
 insert_news = InsertNews()
