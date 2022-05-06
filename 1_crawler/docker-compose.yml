@@ -2,7 +2,13 @@ version: '3'
 
 services:
   tagesschau_crawler:
-    build: .
+    build: tagesschau
+    restart: unless-stopped
+    env_file: .env   
+    tty: true
+
+  newsapi_crawler:
+    build: newsapi
     restart: unless-stopped
     env_file: .env   
     tty: true
