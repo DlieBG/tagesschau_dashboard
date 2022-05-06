@@ -1,6 +1,13 @@
--- Table: public.tagesschau
+DROP TABLE IF EXISTS public.content;
+DROP TABLE IF EXISTS public.geotags;
+DROP TABLE IF EXISTS public.tags;
+DROP TABLE IF EXISTS public.tagesschau;
 
--- DROP TABLE IF EXISTS public.tagesschau;
+DROP TABLE IF EXISTS public.news;
+DROP TABLE IF EXISTS public.source;
+
+
+-- Table: public.tagesschau
 
 CREATE TABLE IF NOT EXISTS public.tagesschau
 (
@@ -32,14 +39,14 @@ CREATE TABLE IF NOT EXISTS public.tagesschau
     "shareUrl" text COLLATE pg_catalog."default" NOT NULL,
     "topline" text COLLATE pg_catalog."default" NOT NULL,
     "firstSentence" text COLLATE pg_catalog."default" NOT NULL,
-    "ressort" text COLLATE pg_catalog."default" NOT NULL,
+    "ressort" text COLLATE pg_catalog."default",
     "type" text COLLATE pg_catalog."default" NOT NULL,
     "breakingNews" boolean NOT NULL,
     "crawlerInsertTime" timestamp NOT NULL,
     "crawlerCrawlTime" timestamp NOT NULL,
     "crawlerCrawlType" text COLLATE pg_catalog."default" NOT NULL,
-    "crawlerContentUpdate" boolean NOT NULL,
-    "crawlerFrontepageIndex" bigint NOT NULL,
+    "crawlerContentUpdate" boolean,
+    "crawlerFrontpageIndex" bigint NOT NULL,
     "crawlerFrontpageStatus" text COLLATE pg_catalog."default" NOT NULL,
     "crawlerAllIndex" bigint NOT NULL,
     "crawlerAllStatus" text COLLATE pg_catalog."default" NOT NULL,
@@ -55,45 +62,43 @@ ALTER TABLE IF EXISTS public.tagesschau
 
 -- Table: public.content
 
--- DROP TABLE IF EXISTS public.content;
-
 CREATE TABLE IF NOT EXISTS public.content
 (
     "id" serial NOT NULL,
     "tagesschauId" integer NOT NULL,
     "type" text COLLATE pg_catalog."default" NOT NULL,
-    "value" text COLLATE pg_catalog."default" NOT NULL,
-    "boxTitle" text COLLATE pg_catalog."default" NOT NULL,
-    "boxSubtitle" text COLLATE pg_catalog."default" NOT NULL,
-    "boxText" text COLLATE pg_catalog."default" NOT NULL,
-    "boxLink" text COLLATE pg_catalog."default" NOT NULL,
-    "boxSource" text COLLATE pg_catalog."default" NOT NULL,
-    "videoSophoraId" text COLLATE pg_catalog."default" NOT NULL,
-    "videoExternalId" text COLLATE pg_catalog."default" NOT NULL,
-    "videoTitle" text COLLATE pg_catalog."default" NOT NULL,
-    "videoDate" timestamp NOT NULL,
-    "videoUpdateCheckUrl" text COLLATE pg_catalog."default" NOT NULL,
-    "videoCopyright" text COLLATE pg_catalog."default" NOT NULL,
-    "videoType" text COLLATE pg_catalog."default" NOT NULL,
-    "videoAlttext" text COLLATE pg_catalog."default" NOT NULL,
-    "quotationText" text COLLATE pg_catalog."default" NOT NULL,
-    "webviewInline" text COLLATE pg_catalog."default" NOT NULL,
-    "htmlEmbedService" text COLLATE pg_catalog."default" NOT NULL,
-    "htmlEmbedUrl" text COLLATE pg_catalog."default" NOT NULL,
-    "audioDate" timestamp NOT NULL,
-    "audioTeaserImageTitle" text COLLATE pg_catalog."default" NOT NULL,
-    "audioTeaserImageCopyright" text COLLATE pg_catalog."default" NOT NULL,
-    "audioTeaserImageAlttext" text COLLATE pg_catalog."default" NOT NULL,
-    "audioTeaserImageType" text COLLATE pg_catalog."default" NOT NULL,
-    "audioTitle" text COLLATE pg_catalog."default" NOT NULL,
-    "audioText" text COLLATE pg_catalog."default" NOT NULL,
-    "socialTitle" text COLLATE pg_catalog."default" NOT NULL,
-    "socialAccount" text COLLATE pg_catalog."default" NOT NULL,
-    "socialUsername" text COLLATE pg_catalog."default" NOT NULL,
-    "socialAvatar" text COLLATE pg_catalog."default" NOT NULL,
-    "socialUrl" text COLLATE pg_catalog."default" NOT NULL,
-    "socialShorttext" text COLLATE pg_catalog."default" NOT NULL,
-    "socialDate" timestamp NOT NULL,
+    "value" text COLLATE pg_catalog."default",
+    "boxTitle" text COLLATE pg_catalog."default",
+    "boxSubtitle" text COLLATE pg_catalog."default",
+    "boxText" text COLLATE pg_catalog."default",
+    "boxLink" text COLLATE pg_catalog."default",
+    "boxSource" text COLLATE pg_catalog."default",
+    "videoSophoraId" text COLLATE pg_catalog."default",
+    "videoExternalId" text COLLATE pg_catalog."default",
+    "videoTitle" text COLLATE pg_catalog."default",
+    "videoDate" timestamp,
+    "videoUpdateCheckUrl" text COLLATE pg_catalog."default",
+    "videoCopyright" text COLLATE pg_catalog."default",
+    "videoType" text COLLATE pg_catalog."default",
+    "videoAlttext" text COLLATE pg_catalog."default",
+    "quotationText" text COLLATE pg_catalog."default",
+    "webviewInline" text COLLATE pg_catalog."default",
+    "htmlEmbedService" text COLLATE pg_catalog."default",
+    "htmlEmbedUrl" text COLLATE pg_catalog."default",
+    "audioDate" timestamp,
+    "audioTeaserImageTitle" text COLLATE pg_catalog."default",
+    "audioTeaserImageCopyright" text COLLATE pg_catalog."default",
+    "audioTeaserImageAlttext" text COLLATE pg_catalog."default",
+    "audioTeaserImageType" text COLLATE pg_catalog."default",
+    "audioTitle" text COLLATE pg_catalog."default",
+    "audioText" text COLLATE pg_catalog."default",
+    "socialTitle" text COLLATE pg_catalog."default",
+    "socialAccount" text COLLATE pg_catalog."default",
+    "socialUsername" text COLLATE pg_catalog."default",
+    "socialAvatar" text COLLATE pg_catalog."default",
+    "socialUrl" text COLLATE pg_catalog."default",
+    "socialShorttext" text COLLATE pg_catalog."default",
+    "socialDate" timestamp,
     "index" bigint NOT NULL,
     CONSTRAINT content_pkey PRIMARY KEY (id),
     CONSTRAINT "content_tagesschauId_fkey" FOREIGN KEY ("tagesschauId")
@@ -110,8 +115,6 @@ ALTER TABLE IF EXISTS public.content
 
 
 -- Table: public.geotags
-
--- DROP TABLE IF EXISTS public.geotags;
 
 CREATE TABLE IF NOT EXISTS public.geotags
 (
@@ -135,8 +138,6 @@ ALTER TABLE IF EXISTS public.geotags
 
 -- Table: public.tags
 
--- DROP TABLE IF EXISTS public.tags;
-
 CREATE TABLE IF NOT EXISTS public.tags
 (
     "id" serial NOT NULL,
@@ -159,12 +160,15 @@ ALTER TABLE IF EXISTS public.tags
 
 -- Table: public.source
 
--- DROP TABLE IF EXISTS public.source;
-
 CREATE TABLE IF NOT EXISTS public.source
 (
     "id" text COLLATE pg_catalog."default" NOT NULL,
     "name" text COLLATE pg_catalog."default" NOT NULL,
+    "description" text COLLATE pg_catalog."default" NOT NULL,
+    "url" text COLLATE pg_catalog."default" NOT NULL,
+    "category" text COLLATE pg_catalog."default" NOT NULL,
+    "language" text COLLATE pg_catalog."default" NOT NULL,
+    "country" text COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT source_pkey PRIMARY KEY (id),
     CONSTRAINT source_id_key UNIQUE (id)
 )
@@ -177,14 +181,12 @@ ALTER TABLE IF EXISTS public.source
 
 -- Table: public.news
 
--- DROP TABLE IF EXISTS public.news;
-
 CREATE TABLE IF NOT EXISTS public.news
 (
     "id" serial NOT NULL,
     "sourceId" text COLLATE pg_catalog."default" NOT NULL,
     "author" text COLLATE pg_catalog."default",
-    "title" text COLLATE pg_catalog."default" NOT NULL,
+    "title" text COLLATE pg_catalog."default",
     "description" text COLLATE pg_catalog."default" NOT NULL,
     "url" text COLLATE pg_catalog."default" NOT NULL,
     "urlToImage" text COLLATE pg_catalog."default",
