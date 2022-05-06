@@ -1,8 +1,6 @@
 import psycopg2
 import os
 
-from sqlalchemy import null
-
 class Postgres:
 
     def __init__(self):

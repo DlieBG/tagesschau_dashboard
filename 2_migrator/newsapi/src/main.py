@@ -2,7 +2,7 @@ from dotenv import load_dotenv, find_dotenv
 from mongo import Mongo
 from postgres import Postgres
 
-def print_progress_bar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+def print_progress_bar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\n"):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
     filledLength = int(length * iteration // total)
     bar = fill * filledLength + '-' * (length - filledLength)
@@ -16,12 +16,12 @@ load_dotenv(find_dotenv())
 mongo = Mongo()
 postgres = Postgres()
 
-print('Altdaten werden gelöscht...', end = '\r')
+print('Altdaten werden gelöscht...', end = '\n')
 
 postgres.delete_news()
 
 
-print('Sources werden migriert..', end = '\r')
+print('Sources werden migriert..', end = '\n')
 
 for source in mongo.get_sources():
     postgres.insert_source(source)
