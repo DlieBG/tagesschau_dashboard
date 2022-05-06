@@ -13,8 +13,8 @@ services:
     image: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: tagesschau
-      POSTGRES_PASSWORD: geheim
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       PGPORT: 5432
       PGDATA: /data/postgres
     volumes:
