@@ -51,14 +51,12 @@ class Postgres:
             news['source']['id'],
             news.get('author'),
             news['title'],
-            news['description'],
+            news.get('description'),
             news['url'],
             news.get('urlToImage'),
             news['publishedAt'],
             news['content']
         ))
-
-        newsId = self.cur.fetchone()[0]
 
     def commit(self):
         self.conn.commit()

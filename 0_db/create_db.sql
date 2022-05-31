@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS public.news
     "sourceId" text COLLATE pg_catalog."default" NOT NULL,
     "author" text COLLATE pg_catalog."default",
     "title" text COLLATE pg_catalog."default",
-    "description" text COLLATE pg_catalog."default" NOT NULL,
+    "description" text COLLATE pg_catalog."default",
     "url" text COLLATE pg_catalog."default" NOT NULL,
     "urlToImage" text COLLATE pg_catalog."default",
     "publishedAt" timestamp NOT NULL,
