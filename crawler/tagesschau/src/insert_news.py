@@ -7,6 +7,17 @@ class InsertNews():
 
     def __init__(self) -> None:
         self.db = TagesschauMongoDB()
+        
+        try:
+            self.news_output_bucket = []
+            
+            self.__crawl_articles(True)
+            self.db.insert_news(self.news_output_bucket)
+            
+            sleep(10 * 60)
+        except:
+            print(e)
+            sleep(10 * 60)
  
         while True:
             try:
@@ -20,16 +31,17 @@ class InsertNews():
                 print(e)
                 sleep(10 * 60)
 
-    def __crawl_articles(self) -> None:
+    def __crawl_articles(self, initial: bool = False) -> None:
         frontpage_news = requests.get('https://www.tagesschau.de/api2').json()['news']
         self.__insert_frontpage_news(frontpage_news)
 
         all_news_site = requests.get('https://www.tagesschau.de/api2/news').json()
         all_news = all_news_site['news']
         
-        while next_url := all_news_site.get('nextPage'):
-            all_news_site = requests.get(next_url).json()
-            all_news += all_news_site['news']
+        if initial:
+            while next_url := all_news_site.get('nextPage'):
+                all_news_site = requests.get(next_url).json()
+                all_news += all_news_site['news']
         
         self.__insert_all_news(all_news)
 
