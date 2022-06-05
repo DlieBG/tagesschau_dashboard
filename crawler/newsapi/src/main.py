@@ -26,3 +26,4 @@ scheduler.add_job(insert_news.crawl_news, 'interval', minutes=15, next_run_time=
 scheduler.add_job(historic_news.crawl_historic_news, 'interval', days=1, next_run_time=start)
 scheduler.add_job(process_errors.process_errors, 'interval', days=1, next_run_time=start)
 scheduler.start()
+scheduler.join()

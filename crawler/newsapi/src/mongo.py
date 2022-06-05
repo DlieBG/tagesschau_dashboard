@@ -27,6 +27,9 @@ class NewsApiMongoDB:
             'from': start,
             'to': end,
         })
+        
+    def exists(self, article: dict) -> bool:
+        return self.db.news.find_one({'url': article['url']}) is not None
 
     def get_sources(self) -> str:
         return ",".join([x['id'] for x in list(self.db.sources.find({}))])

@@ -23,7 +23,8 @@ class UpdateNews():
         all_news_site = requests.get('https://www.tagesschau.de/api2/news').json()
         all_news = all_news_site['news']
         
-        while next_url := all_news_site.get('nextPage'):
+        for i in range(2):
+            next_url = all_news_site.get('nextPage')
             all_news_site = requests.get(next_url).json()
             all_news += all_news_site['news']
 
