@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  analisis:
+    build: .
+    network_mode: host
+    env_file: .env.sample
+    tty: true
