@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS public.content;
 DROP TABLE IF EXISTS public.geotags;
 DROP TABLE IF EXISTS public.tags;
 DROP TABLE IF EXISTS public.clean_tags;
+DROP TABLE IF EXISTS public.clean_regions;
 DROP TABLE IF EXISTS public.tagesschau;
 
 DROP TABLE IF EXISTS public.news;
@@ -181,6 +182,30 @@ ALTER TABLE IF EXISTS public.clean_tags
     OWNER to postgres;
 
 
+-- Table: public.clean_regions
+
+CREATE TABLE IF NOT EXISTS public.clean_regions
+(
+    "id" serial NOT NULL,
+    "tagesschauId" integer NOT NULL,
+    "regionId" text COLLATE pg_catalog."default" NOT NULL,
+    "regionName" text COLLATE pg_catalog."default" NOT NULL,
+    "regionIsoCode" text COLLATE pg_catalog."default" NOT NULL,
+    "index" bigint NOT NULL,
+    CONSTRAINT clean_regions_pkey PRIMARY KEY (id),
+    CONSTRAINT "clean_regions_tagesschauId_fkey" FOREIGN KEY ("tagesschauId")
+        REFERENCES public.tagesschau (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.clean_regions
+    OWNER to postgres;
+
+
 -- Table: public.source
 
 CREATE TABLE IF NOT EXISTS public.source
@@ -233,4 +258,5 @@ CREATE INDEX ON content("tagesschauId");
 CREATE INDEX ON geotags("tagesschauId");
 CREATE INDEX ON tags("tagesschauId");
 CREATE INDEX ON clean_tags("tagesschauId");
+CREATE INDEX ON clean_regions("tagesschauId");
 CREATE INDEX ON news("sourceId");
