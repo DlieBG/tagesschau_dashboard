@@ -1,5 +1,4 @@
 interesting_phrases = [
-    "FC",
 ]
 
 corona = 'Corona'

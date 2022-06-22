@@ -4,5 +4,5 @@ services:
   analisis:
     build: .
     network_mode: host
-    env_file: .env.sample
+    env_file: ../.env.visualize
     tty: true

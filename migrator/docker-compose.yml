@@ -4,11 +4,11 @@ services:
   tagesschau_migrator:
     build: tagesschau
     network_mode: host
-    env_file: .env
+    env_file: ../.env.visualize
     tty: true
 
   newsapi_migrator:
     build: newsapi
     network_mode: host
-    env_file: .env
+    env_file: ../.env.visualize
     tty: true
