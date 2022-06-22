@@ -1,8 +1,11 @@
 from dotenv import load_dotenv, find_dotenv
 from postgres import Postgres
 from textstrip import strip_tags
-from progress import print_progress_bar
 import spacy
+
+def print_percent(iteration, total, decimals = 1):
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    print(percent + " %")
 
 load_dotenv(find_dotenv())
 
@@ -27,7 +30,7 @@ for index, result in enumerate(texts):
     
     for key in global_word_types.keys():
         global_word_types[key] += word_types[key]
-    print_progress_bar(index, len(texts), prefix = 'Articles', suffix = 'scanned')
+    print_percent(index + 1, len(texts))
 
 print()
 print(global_word_types)

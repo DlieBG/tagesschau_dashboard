@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  tagesschau_cleaner:
+    build: tagesschau
+    network_mode: host
+    env_file: .env
+    tty: true
+
+  # newsapi_cleaner:
+  #   build: newsapi
+  #   network_mode: host
+  #   env_file: .env
+  #   tty: true
