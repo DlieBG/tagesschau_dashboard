@@ -15,7 +15,10 @@ class NewsApiMongoDB:
             self.db.news.insert_many(news)
     
     def get_errors(self) -> list:
-        list(self.db.error.find({}).limit(4))
+        errors = self.db.error.find({}).limit(4)
+        if errors:
+            return list(errors)
+        return list()
     
     def delete_error(self, error_id: str) -> None:
         self.db.error.delete_one({'_id': error_id})
