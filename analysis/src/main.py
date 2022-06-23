@@ -23,6 +23,8 @@ for index, result in enumerate(texts):
     word_types = {'PRON':0, 'X':0, 'PROPN':0, 'SCONJ':0, 'PUNCT':0, 'NOUN':0, 'SPACE':0, 'INTJ':0, 'VERB':0, 'PART':0, 'AUX':0, 'NUM':0, 'CCONJ':0, 'DET':0, 'ADP':0, 'ADJ':0, 'ADV':0}
     
     text = result[1]
+    if text is None:
+        continue
     text = strip_tags(text)
     analisis = nlp(text)
     for word in analisis:
