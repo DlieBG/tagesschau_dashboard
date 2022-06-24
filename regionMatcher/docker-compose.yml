@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  tagesschau_cleaner:
+  tagesschau_regionmatcher:
     build: tagesschau
     network_mode: host
     env_file: ../.env.visualize
     tty: true
 
-  # newsapi_cleaner:
+  # newsapi_regionmatcher:
   #   build: newsapi
   #   network_mode: host
   #   env_file: .env
