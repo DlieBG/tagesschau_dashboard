@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd db || exit
+sudo docker-compose down
 sudo rm -rf ./data/postgres
 sudo docker-compose up --build --force-recreate -d
 sleep 10
