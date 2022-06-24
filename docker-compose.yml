@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  tagesschau_crawler:
+    build: ./crawler/tagesschau
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/
+    tty: true
+
+  newsapi_crawler:
+    build: ./crawler/newsapi
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/
+    env_file: .env
+    tty: true
+
+  mongo:
+    image: mongo:5.0.7
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db

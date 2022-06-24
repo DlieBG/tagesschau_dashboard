@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:14.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGPORT: 5432
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/init/:/docker-entrypoint-initdb.d/
+      - ./data/postgres:/data/postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:6.8
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    user: root
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 6069:80
+    volumes:
+       - ./data/pgadmin:/var/lib/pgadmin
