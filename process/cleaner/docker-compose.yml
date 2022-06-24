@@ -4,7 +4,7 @@ services:
   tagesschau_cleaner:
     build: tagesschau
     network_mode: host
-    env_file: ../.env.visualize
+    env_file: ../../db/.env
     tty: true
 
   # newsapi_cleaner:
