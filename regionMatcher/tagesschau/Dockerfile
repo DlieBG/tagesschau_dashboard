@@ -5,7 +5,7 @@ COPY src/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/main.py .
-COPY src/cleaner.py .
+COPY src/regionMatcher.py .
 COPY src/postgres.py .
 
 CMD [ "python", "main.py" ]

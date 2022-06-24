@@ -14,33 +14,38 @@ class Postgres:
         self.cur = self.conn.cursor()
 
     def get_tagesschauIds(self):
-        self.cur.execute('''select distinct "tagesschauId" from tagesschau;''')
+        self.cur.execute('''select distinct "id" from tagesschau where "crawlerCrawlType"='insert';''')
         return [x[0] for x in self.cur.fetchall()]
 
-    def get_regions(self, tagesschauId):
-        self.cur.execute('''select "regionId" from tagesschau where "tagesschauId" = %s''', (tagesschauId,))
+    def get_regionIds(self, tagesschauId):
+        self.cur.execute('''select "regionId" from tagesschau where "id" = %s''', (tagesschauId,))
         return [x[0] for x in self.cur.fetchall()]
 
-    def insert_clean_region(self, tagesschauId, region):
-        for index, regionId, regionName, regionIsoCode in enumerate(regions):
+    def get_dates(self, tagesschauId):
+        self.cur.execute('''select "date" from tagesschau where "id" = %s''', (tagesschauId,))
+        return [x[0] for x in self.cur.fetchall()]
+
+    def insert_clean_region(self, tagesschauId, region, date):
             self.cur.execute('''
                 insert into clean_regions(
                     "tagesschauId",
                     "regionId",
                     "regionName",
                     "regionIsoCode",
-                    "index")
-                values (%s, %s, %s, %s);
+                    "date"
+                    )
+                values (%s, %s, %s, %s, %s);
             ''', (
                 tagesschauId,
-                regionId,
-                regionName,
-                regionIsoCode,
-                index
+                region.id,
+                region.name,
+                region.isoCode,
+                date
             ))
     
-    def delete_Clean_regions(self):
-        self.cur.execute('delete from clean_tags;')
+    def delete_clean_regions(self):
+        print("Deleting clean_regions")
+        self.cur.execute('delete from clean_regions;')
         self.conn.commit()
 
     def commit(self):

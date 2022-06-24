@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS public.clean_regions
     "regionId" text COLLATE pg_catalog."default" NOT NULL,
     "regionName" text COLLATE pg_catalog."default" NOT NULL,
     "regionIsoCode" text COLLATE pg_catalog."default" NOT NULL,
-    "index" bigint NOT NULL,
+    "date" timestamp NOT NULL,
     CONSTRAINT clean_regions_pkey PRIMARY KEY (id),
     CONSTRAINT "clean_regions_tagesschauId_fkey" FOREIGN KEY ("tagesschauId")
         REFERENCES public.tagesschau (id) MATCH SIMPLE
