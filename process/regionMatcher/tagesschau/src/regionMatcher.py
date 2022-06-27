@@ -180,7 +180,7 @@ class RegionMatcher:
         broadcasterNameShorthand = broadcasterNameShorthands.get(regionId)
         if(broadcasterNameShorthand):
             return broadcasterNameShorthand
-        return regionId
+        return ""
 
     def getBroadcasterRevenue(self, regionId):
         broadcasterRevenue = broadcasterRevenues.get(regionId)
