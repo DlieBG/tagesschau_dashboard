@@ -40,7 +40,7 @@ class Postgres:
                     "broadcasterEmployees",
                     "broadcasterResidents"
                     )
-                values (%s, %s, %s, %s, %s);
+                values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
             ''', (
                 tagesschauId,
                 region.id,
