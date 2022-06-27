@@ -32,7 +32,13 @@ class Postgres:
                     "regionId",
                     "regionName",
                     "regionIsoCode",
-                    "date"
+                    "date",
+                    "regionResidents",
+                    "broadcasterName",
+                    "broadcasterNameShorthand",
+                    "broadcasterRevenue",
+                    "broadcasterEmployees",
+                    "broadcasterResidents"
                     )
                 values (%s, %s, %s, %s, %s);
             ''', (
@@ -40,7 +46,13 @@ class Postgres:
                 region.id,
                 region.name,
                 region.isoCode,
-                date
+                date,
+                region.regionResidents,
+                region.broadcasterName,
+                region.broadcasterNameShorthand,
+                region.broadcasterRevenue,
+                region.broadcasterEmployees,
+                region.broadcasterResidents
             ))
     
     def delete_clean_regions(self):
