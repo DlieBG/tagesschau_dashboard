@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS public.clean_regions
 (
     "id" serial NOT NULL,
     "tagesschauId" integer NOT NULL,
-    "regionId" text COLLATE pg_catalog."default" NOT NULL,
+    "regionId" bigint NOT NULL,
     "regionName" text COLLATE pg_catalog."default" NOT NULL,
     "regionIsoCode" text COLLATE pg_catalog."default" NOT NULL,
     "date" timestamp NOT NULL,
