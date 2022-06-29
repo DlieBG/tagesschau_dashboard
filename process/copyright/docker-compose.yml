@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  tagesschau_copyright:
+    build: tagesschau
+    network_mode: host
+    env_file: ../../db/.env
+    tty: true
+
+  # newsapi_copyright:
+  #   build: newsapi
+  #   network_mode: host
+  #   env_file: .env
+  #   tty: true
