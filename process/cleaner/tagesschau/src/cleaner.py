@@ -9,28 +9,157 @@ alias = {
     'Coronavirus in Deutschland': corona,
     'Covid-19': corona,
     'SARS-CoV-2': corona,
+    'CORONA': corona,
+    'Corona-Expertenrat': corona,
+    'Corona-Hilfen': corona,
+    'Corona-Impfstoff': corona,
+    'Coronaimpfung': corona,
+    'Corona-Krisenstab': corona,
+    'Corona-Testzentrum': corona,
+    'Covid-19-Zertifikat': corona,
     
     'Abschiebungen': 'Abschiebung',
+    'Abschiebeflug': 'Abschiebung',
     
     'Abtreibungen': 'Abtreibung',
+    'Abtreibungsgesetz': 'Abtreibung',
+    'Abtreibungsrecht': 'Abtreibung',
+    'Abtreibungsurteil': 'Abtreibung',
+    'Abtreibungsverbot': 'Abtreibung',
     
     'AFD': 'AfD',
+    'afdbpt': 'AfD',
+    'AfD-Parteitag': 'AfD',
+
+    'Afghanistan-Abzug': 'Afghanistan',
+
+    'Aktie': 'Aktien',
+    'Aktienhandel': 'Aktien',
+    'Aktienkurse': 'Aktien',
+    'Aktienmarkt': 'Aktien',
+    'Aktionäre': 'Aktien',
+
+    'Alkoholkonsum': 'Alkohol',
+
+    'Allianz Trade': 'Allianz',
+
+    'Ampel-Koalition': 'Ampelkoalition',
+    'Ampel-Regierung': 'Ampelkoalition',
+
+    'Analyse': 'Analysesoftware',
+
+    'Anlagestrategien': 'Anleger',
+    'Anlegerschützer': 'Anleger',
+
+    'Anleihekaufprogramm': 'Anleihen',
+    'Anleihemarkt': 'Anleihen',
+    'Anleiherenditen': 'Anleihen',
+
+    'Appel': 'Apple',
+    'Apple Pay': 'Apple',
+
+    'Arbeiterrechte': 'Arbeit',
+    'Arbeitgeber': 'Arbeit',
+    'Arbeitnehmerrechte': 'Arbeit',
+    'Arbeitsbedingungen': 'Arbeit',
+    'Arbeitsplatz': 'Arbeit',
+    'Arbeitsschutz': 'Arbeit',
+    'Arbeitsschutzverordnung': 'Arbeit',
+
+    'Arbeitslose': 'Arbeitslosigkeit',
+    'Arbeitslosengeld': 'Arbeitslosigkeit',
+    'Arbeitslosenzahlen': 'Arbeitslosigkeit',
+    'Arbeitsmarkt': 'Arbeitslosigkeit',
+
+    'Armutsbekämpfung': 'Armut',
+    'Armutsdelikte': 'Armut',
+
+    'Arzt': 'Ärzte',
+    'Arztpraxis': 'Ärzte',
+
+    'Asow-Stahlwerk': 'Asow-Regiment',
+    'Asowstal': 'Asow-Regiment',
+
+    'Assad-Regime': 'Assad',
+
+    'Asyl ': 'Asyl',
+    'Asylbewerber': 'Asyl',
+    'Asylpolitik': 'Asyl',
+    'Asylverfahren': 'Asyl',
     
     'Atomkraft': 'Atomenergie',
     'Atomkraftwerke': 'Atomenergie',
+    'Atomfonds': 'Atomenergie',
+    'Atomkraftwerk': 'Atomenergie',
+    'Atommüll': 'Atomenergie',
+    'Atommüll-Endlager': 'Atomenergie',
+    'Atomprogramm': 'Atomenergie',
+
+    'Ausbildungsmarkt': 'Ausbildung',
+    'Ausbildungsplätze': 'Ausbildung',
+    'Ausbildungsstellen': 'Ausbildung',
+
+    'Autoabsatz': 'Autos',
+    'Autobahn': 'Autos',
+    'Autobahnen': 'Autos',
+    'Autobauer': 'Autos',
+    'Autobranche': 'Autos',
+    'Autofabrik': 'Autos',
+    'Autofahren': 'Autos',
+    'Autofahrer': 'Autos',
+    'Autohandel': 'Autos',
+    'Autoindustrie': 'Autos',
+    'Automarkt': 'Autos',
+    'Autonomes Fahren': 'Autos',
+    'Autopilot': 'Autos',
+    'Autozulieferer': 'Autos',
     
     'Baden Württemberg': 'Baden-Württemberg',
+
+    'Bauboom': 'Bauindustrie',
+    'Baubranche': 'Bauindustrie',
+    'Bauen': 'Bauindustrie',
+    'Baugewerbe': 'Bauindustrie',
+    'Bauhaus': 'Bauindustrie',
+    'Baukredit': 'Bauindustrie',
+    'Baumarkt': 'Bauindustrie',
+    'Bauzinsen': 'Bauindustrie',
+
+    'Bayer 04 Leverkusen': 'Bayer Leverkusen',
+
+    'Biersteuer': 'Bier',
+
+    'BIlanz': 'Bilanz',
+    'Bilanzskandal': 'Bilanz',
     
     'Booster-Impfstoff': 'Booster',
     
     'Coronaimpfstoffe': 'Corona-Impfstoff',
     
     'Cum Ex': 'Cum-Ex',
+    'Cum-Ex-Geschäfte': 'Cum-Ex',
     
     'Cyber-Attacke': 'Cyberangriff',
     'Cyberangriffe': 'Cyberangriff',
+    'Cybercrime': 'Cyberangriff',
+    'Cyberkrieg': 'Cyberangriff',
     
     'Deutsch Bahn': 'Deutsche Bahn',
+    'DB': 'Deutsche Bahn',
+    'Bahn': 'Deutsche Bahn',
+    'Bahn-Infrastruktur': 'Deutsche Bahn',
+    'Bahnnetzt': 'Deutsche Bahn',
+    'Bahnrad': 'Deutsche Bahn',
+    'Bahnstreik': 'Deutsche Bahn',
+    'Bahnverkehr': 'Deutsche Bahn',
+    'Bahnwerk': 'Deutsche Bahn',
+
+    'Deepfakes': 'Deep Fake',
+    'Deep Fakes': 'Deep Fake',
+
+    'Demonstation': 'Demonstration',
+
+    'Deutschalnd': 'Deutschland',
     
     'documentafifteen': 'documenta15',
     
