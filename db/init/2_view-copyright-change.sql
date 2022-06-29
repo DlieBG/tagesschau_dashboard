@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS public.copyright;
+DROP VIEW IF EXISTS public.copyright_change;
 
-CREATE VIEW public.copyright AS 
+CREATE VIEW public.copyright_change AS 
 
 select 
 	t."id",
