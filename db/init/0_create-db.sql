@@ -218,7 +218,6 @@ CREATE TABLE IF NOT EXISTS public.clean_copyright
 (
     "id" serial NOT NULL,
     "tagesschauId" integer NOT NULL,
-    "regionId" bigint NOT NULL,
     "imageCopyright" text COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT clean_copyright_pkey PRIMARY KEY (id),
     CONSTRAINT "clean_copyright_tagesschauId_fkey" FOREIGN KEY ("tagesschauId")
@@ -282,6 +281,7 @@ ALTER TABLE IF EXISTS public.news
     OWNER to postgres;
 
 
+CREATE INDEX ON tagesschau("externalId");
 CREATE INDEX ON content("tagesschauId");
 CREATE INDEX ON geotags("tagesschauId");
 CREATE INDEX ON tags("tagesschauId");
@@ -289,4 +289,3 @@ CREATE INDEX ON clean_tags("tagesschauId");
 CREATE INDEX ON clean_regions("tagesschauId");
 CREATE INDEX ON clean_copyright("tagesschauId");
 CREATE INDEX ON news("sourceId");
-CREATE INDEX ON tagesschau("externalId");

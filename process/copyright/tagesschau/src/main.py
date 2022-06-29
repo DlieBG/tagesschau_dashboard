@@ -22,8 +22,7 @@ tagesschauEntries = postgres.get_tagesschauIds()
 for index, tagesschauEntry in enumerate(tagesschauEntries):
     postgres.insert_clean_copyright(
         tagesschauEntry[0],
-        tagesschauEntry[1],
-        copyright.get_copyright(tagesschauEntry[2])
+        copyright.get_copyright(tagesschauEntry[1])
     )
 
     print_percent(index + 1, len(tagesschauEntries))

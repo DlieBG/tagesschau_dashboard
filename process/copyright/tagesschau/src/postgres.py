@@ -15,7 +15,7 @@ class Postgres:
 
     def get_tagesschauIds(self):
         self.cur.execute('''
-            select "id", "regionId", "teaserImageCopyright"
+            select "id", "teaserImageCopyright"
             from tagesschau as t1
             where
                 t1."teaserImageCopyright" is not null and
@@ -23,7 +23,7 @@ class Postgres:
                 
             union
 
-            select "id", "regionId", "teaserImageCopyright"
+            select "id", "teaserImageCopyright"
             from tagesschau as t2
             where 
                 t2."teaserImageCopyright" is not null and
@@ -40,16 +40,14 @@ class Postgres:
         ''')
         return self.cur.fetchall()
 
-    def insert_clean_copyright(self, tagesschauId, regionId, imageCopyright):
+    def insert_clean_copyright(self, tagesschauId, imageCopyright):
             self.cur.execute('''
                 insert into clean_copyright(
                     "tagesschauId",
-                    "regionId",
                     "imageCopyright")
-                values (%s, %s, %s);
+                values (%s, %s);
             ''', (
                 tagesschauId,
-                regionId,
                 imageCopyright
             ))
     
