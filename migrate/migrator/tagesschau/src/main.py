@@ -2,9 +2,14 @@ from dotenv import load_dotenv, find_dotenv
 from mongo import Mongo
 from postgres import Postgres
 
-def print_percent(iteration, total, decimals = 1):
+last_percent = ""
+
+def print_percent(iteration, total, decimals = 0):
+    global last_percent
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-    print(percent + " %")
+    if percent != last_percent:
+        print(percent + " %")
+        last_percent = percent
 
 load_dotenv(find_dotenv())
 
@@ -19,6 +24,6 @@ length = mongo.get_count()
 
 for index, news in enumerate(mongo.get_news()):
     postgres.insert_news(news)
-    print_percent(index + 1, length)
+    print_percent(index + 1, length, 1)
 
 postgres.commit()
