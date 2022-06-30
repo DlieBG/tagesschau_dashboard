@@ -16,3 +16,5 @@ cd ../regionMatcher  || exit
 sudo docker-compose up --build --force-recreate
 cd ../copyright  || exit
 sudo docker-compose up --build --force-recreate
+cd ../analysis  || exit
+sudo docker-compose up --build --force-recreate
