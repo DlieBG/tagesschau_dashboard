@@ -16,7 +16,7 @@ translate = {
     'NUM': 'Nummer',
     'CCONJ': 'nebenordnende Konjunktion',
     'DET': 'Artikel',
-    'ADP': 'Präposition',
+    'ADP': 'Adposition',
     'ADJ': 'Adjektiv',
     'ADV': 'Adverb',
     'SYM': 'Symbol'
@@ -63,7 +63,6 @@ GROUP BY tagesschau."id";
                 translate[word_type],
                 analyis[word_type]
             ))
-        self.conn.commit()
     
     def commit(self):
         self.conn.commit()
