@@ -7,4 +7,4 @@ from content_analysis as c
 join tagesschau as t
 on c."tagesschauId" = t.id
 group by t."ressort", c."wordType"
-order by ressort, avg desc
+order by ressort, avg desc;
