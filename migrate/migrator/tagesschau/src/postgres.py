@@ -110,6 +110,10 @@ class Postgres:
         self.cur.execute('delete from tagesschau;')
         self.conn.commit()
 
+    def update_view(self):
+        self.cur.execute('refresh materialized view public.index_retention;')
+        self.conn.commit()
+
     def __insert_content(self, tagesschauId, contents):
         for index, content in enumerate(contents):
             self.cur.execute(f'''

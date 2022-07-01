@@ -27,3 +27,4 @@ for index, news in enumerate(mongo.get_news()):
     print_percent(index + 1, length, 1)
 
 postgres.commit()
+postgres.update_view()

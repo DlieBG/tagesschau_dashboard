@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS public.geotags;
 DROP TABLE IF EXISTS public.tags;
 DROP TABLE IF EXISTS public.clean_tags;
 DROP TABLE IF EXISTS public.clean_regions;
+DROP TABLE IF EXISTS public.content_analysis;
 DROP TABLE IF EXISTS public.tagesschau;
 
 DROP TABLE IF EXISTS public.news;
@@ -233,6 +234,28 @@ ALTER TABLE IF EXISTS public.clean_copyright
     OWNER to postgres;
 
 
+-- Table: public.clean_copyright
+
+CREATE TABLE IF NOT EXISTS public.content_analysis
+(
+    "id" serial NOT NULL,
+    "tagesschauId" integer NOT NULL,
+    "wordType" text COLLATE pg_catalog."default" NOT NULL,
+    "count" bigint NOT NULL,
+    CONSTRAINT content_analysis_pkey PRIMARY KEY (id),
+    CONSTRAINT "content_analysis_tagesschauId_fkey" FOREIGN KEY ("tagesschauId")
+        REFERENCES public.tagesschau (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.content_analysis
+    OWNER to postgres;
+
+
 -- Table: public.source
 
 CREATE TABLE IF NOT EXISTS public.source
@@ -288,4 +311,5 @@ CREATE INDEX ON tags("tagesschauId");
 CREATE INDEX ON clean_tags("tagesschauId");
 CREATE INDEX ON clean_regions("tagesschauId");
 CREATE INDEX ON clean_copyright("tagesschauId");
+CREATE INDEX ON content_analysis("tagesschauId");
 CREATE INDEX ON news("sourceId");
