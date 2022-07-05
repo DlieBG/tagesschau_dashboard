@@ -10,7 +10,12 @@ with hods as (
 )
 select 
 	hods.hod,
-	hods."crawlerCrawlType",
+	case
+		when hods."crawlerCrawlType" = 'insert' then 'Veröffentlichung'
+		when hods."crawlerCrawlType" = 'update' then 'Änderung'
+		when hods."crawlerCrawlType" = 'delete' then 'Löschung'
+	else ''
+	end as "crawlerCrawlType",
 	count(*),
 	count(*) / (
 		select count(*)
