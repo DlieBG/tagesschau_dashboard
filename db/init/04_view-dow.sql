@@ -10,7 +10,12 @@ with dows as (
 )
 select 
 	dows.dow,
-	dows."crawlerCrawlType",
+	case
+		when dows."crawlerCrawlType" = 'insert' then 'Veröffentlichung'
+		when dows."crawlerCrawlType" = 'update' then 'Änderung'
+		when dows."crawlerCrawlType" = 'delete' then 'Löschung'
+	else ''
+	end as "crawlerCrawlType",
 	case
 		when dows.dow = 1 then 'Montag'
 		when dows.dow = 2 then 'Dienstag'
