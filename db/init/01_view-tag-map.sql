@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS public.tag_map;
 
 CREATE VIEW public.tag_map AS SELECT a.tag AS tag1,
     b.tag AS tag2,
-    tagesschau.ressort,
+    INITCAP(tagesschau.ressort) as ressort,
     count(*) AS count
 FROM clean_tags a
     CROSS JOIN clean_tags b
